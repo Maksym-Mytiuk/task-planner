@@ -1,17 +1,22 @@
 <template>
     <div>
-        <header>{{ this.header }}</header>
+        <header>
+            <app-nav></app-nav>
+            <h1>{{ this.header }}</h1>
+        </header>
     </div>
 </template>
 
 <script>
+    import AppNav from './AppNav';
 	export default {
 		props: {
 			header: {
 				type: String,
-                default: 'Todo Header'
-            }
-        },
+				default: 'Todo Header'
+			}
+		},
+		components: {AppNav},
 		name: "app-header",
 	}
 </script>

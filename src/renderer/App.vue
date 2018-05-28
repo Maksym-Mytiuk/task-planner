@@ -1,21 +1,19 @@
 <template>
-    <div id="app">
-        <app-nav></app-nav>
-    </div>
+    <v-app id="app">
+        <router-view></router-view>
+    </v-app>
 </template>
 
 <script>
 
-    import AppNav from './components/AppNav'
-    import AppHeader from './components/AppHeader'
 
-    export default {
+	export default {
 		name: 'task-planner',
-        components: { AppNav, AppHeader }
 	};
 
 </script>
 
 <style lang="stylus">
+    @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons');
     @import '~vuetify/src/stylus/main'
 </style>
