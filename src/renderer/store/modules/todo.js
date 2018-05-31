@@ -1,11 +1,4 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-
-// import modules from './modules'
-
-Vue.use(Vuex);
-
-export default new Vuex.Store({
+export default {
 	state: {
 		todoList: [
 			{
@@ -19,7 +12,5 @@ export default new Vuex.Store({
 				massage: 'Todo test text lorem ipsum!!!',
 			}
 		]
-	},
-	// modules,
-	strict: process.env.NODE_ENV !== 'production'
-})
+	}
+};

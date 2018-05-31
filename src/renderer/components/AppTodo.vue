@@ -21,7 +21,7 @@
                     <v-text-field color="blue"
                                   label="Todo text..."
                                   required
-                                  v-model="todos.massage"
+                                  v-model="massage"
                                   :counter="50"></v-text-field>
 
                     <v-btn outline
@@ -46,13 +46,13 @@
 
                     <v-flex xs2 class="todo-editing">
 
-                        <v-btn small flat color="blue" class="todo_edeting__btn" v-if="!todo.isEditing">
+                        <v-btn small flat color="blue" class="todo-editing__btn" v-if="!todo.isEditing">
                             <v-icon>edit</v-icon>
                         </v-btn>
-                        <v-btn small flat color="blue" class="todo_edeting__btn" v-else>
+                        <v-btn small flat color="blue" class="todo-editing__btn" v-else>
                             <v-icon>save</v-icon>
                         </v-btn>
-                        <v-btn small flat color="blue" class="todo_edeting__btn">
+                        <v-btn small flat color="blue" class="todo-editing__btn">
                             <v-icon>delete_outline</v-icon>
                         </v-btn>
 
@@ -73,28 +73,17 @@
 		data() {
 			return {
 				header: "Todo",
-				// todoList: [
-				// 	{
-				// 		isCompleted: false,
-				// 		isEditing: false,
-				// 		massage: 'Todo test text lorem ipsum',
-				// 	},
-				// 	{
-				// 		isCompleted: false,
-				// 		isEditing: false,
-				// 		massage: 'Todo test text lorem ipsum!!!',
-				// 	}
-				// ]
+				massage: ''
 			}
 		},
 		methods: {
 			setTodo(){
-                this.$store.state.todoList.push({
+				this.$store.state.todoList.push({
 					isCompleted: false,
 					isEditing: false,
-					massage: this.todos.massage
+					massage: this.massage
                 });
-                this.todos.massage = ''
+                this.massage = ''
             }
         },
         computed: {
@@ -106,6 +95,7 @@
 </script>
 
 <style lang="stylus" scoped>
+
     .todo-form
         display flex
         .todo-send
@@ -113,6 +103,7 @@
 
     .todo-list
         .todo-editing
-            .todo_edeting__btn
+            .todo-editing__btn
                 min-width auto
+
 </style>
