@@ -1,6 +1,6 @@
 export default {
 	state: {
-		todoList: [
+		todoItems: [
 			{
 				isCompleted: false,
 				isEditing: false,

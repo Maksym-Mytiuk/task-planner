@@ -26,33 +26,33 @@
 
                     <v-btn outline
                            color="blue"
-                           class="todo-send" @click="setTodo">Send
+                           class="todo-send" @click="addTodoItem">Send
                     </v-btn>
 
                 </v-form>
             </v-layout>
 
             <div class="todo-list"
-                 v-for="(todo, index) in todos">
+                 v-for="(item, index) in todo">
                 <v-layout row class="todo-list__items">
 
                     <v-flex xs1>
-                        <v-checkbox color="blue" v-model="todo.isCompleted"></v-checkbox>
+                        <v-checkbox color="blue" v-model="item.isCompleted"></v-checkbox>
                     </v-flex>
 
                     <v-flex xs9>
-                        <p>{{todo.massage}}</p>
+                        <p>{{item.massage}}</p>
                     </v-flex>
 
                     <v-flex xs2 class="todo-editing">
 
-                        <v-btn small flat color="blue" class="todo-editing__btn" v-if="!todo.isEditing">
+                        <v-btn small flat color="blue" class="todo-editing__btn" v-if="!item.isEditing">
                             <v-icon>edit</v-icon>
                         </v-btn>
                         <v-btn small flat color="blue" class="todo-editing__btn" v-else>
                             <v-icon>save</v-icon>
                         </v-btn>
-                        <v-btn small flat color="blue" class="todo-editing__btn">
+                        <v-btn small flat color="blue" class="todo-editing__btn" @click="removeTodoItem(index)">
                             <v-icon>delete_outline</v-icon>
                         </v-btn>
 
@@ -77,18 +77,22 @@
 			}
 		},
 		methods: {
-			setTodo(){
-				this.$store.state.todoList.push({
+			addTodoItem(){
+				this.todo.push({
 					isCompleted: false,
 					isEditing: false,
 					massage: this.massage
                 });
                 this.massage = ''
+            },
+            removeTodoItem(index){
+	            console.log(index);
+	            this.todo.splice(index, 1)
             }
         },
         computed: {
-			todos(){
-				return this.$store.state.todoList
+			todo(){
+				return this.$store.state.todo.todoItems
             }
         }
 	}
