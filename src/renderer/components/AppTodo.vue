@@ -16,12 +16,13 @@
             </v-layout>
 
             <v-layout row column>
-                <v-form valid class="todo-form">
+                <v-form class="todo-form">
 
                     <v-text-field color="blue"
                                   label="Todo text..."
                                   required
                                   v-model="massage"
+                                  @keyup.enter="addTodoItem"
                                   :counter="50"></v-text-field>
 
                     <v-btn outline
@@ -61,6 +62,13 @@
             </div>
 
         </v-container>
+        <v-snackbar
+                :timeout="1800"
+                :color="'error'"
+                v-model="snackbar">
+            {{error}}
+            <v-btn dark flat @click="snackbar = false">Close</v-btn>
+        </v-snackbar>
     </div>
 </template>
 
@@ -69,32 +77,43 @@
 
 	export default {
 		components: {AppHeader},
+
 		name: "app-todo",
 		data() {
 			return {
 				header: "Todo",
-				massage: ''
+				massage: '',
+                error: 'Invalid number of characters',
+				snackbar: false,
 			}
 		},
+
 		methods: {
-			addTodoItem(){
-				this.todo.push({
+			addTodoItem() {
+				const todoItem = {
 					isCompleted: false,
 					isEditing: false,
 					massage: this.massage
-                });
-                this.massage = ''
-            },
-            removeTodoItem(index){
-	            console.log(index);
-	            this.todo.splice(index, 1)
-            }
-        },
-        computed: {
-			todo(){
+				};
+				const massage = this.massage.trim();
+				if (massage.length > 0 && massage.length <= 50) {
+					this.$store.commit('addTodoItem', todoItem);
+					this.massage = ''
+				} else {
+					this.snackbar = true
+                }
+
+			},
+			removeTodoItem(index) {
+				this.$store.commit('removeTodoItem', index)
+			}
+		},
+
+		computed: {
+			todo() {
 				return this.$store.state.todo.todoItems
-            }
-        }
+			}
+		}
 	}
 </script>
 

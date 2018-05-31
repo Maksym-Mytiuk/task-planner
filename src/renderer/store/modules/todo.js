@@ -12,5 +12,13 @@ export default {
 				massage: 'Todo test text lorem ipsum!!!',
 			}
 		]
+	},
+	mutations: {
+		addTodoItem(state, todoItem) {
+			state.todoItems.push(todoItem)
+		},
+		removeTodoItem(state, index){
+			state.todoItems.splice(index, 1)
+		}
 	}
 };
