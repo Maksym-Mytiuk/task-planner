@@ -2,11 +2,13 @@ export default {
 	state: {
 		todoItems: [
 			{
-				isCompleted: false,
+				id: 1,
+				isCompleted: true,
 				isEditing: false,
 				massage: 'Todo test text lorem ipsum',
 			},
 			{
+				id: 2,
 				isCompleted: false,
 				isEditing: false,
 				massage: 'Todo test text lorem ipsum!!!',

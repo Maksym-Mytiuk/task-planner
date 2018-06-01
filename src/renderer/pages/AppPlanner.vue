@@ -5,7 +5,7 @@
 </template>
 
 <script>
-	import AppHeader from './AppHeader'
+	import AppHeader from './../components/AppHeader'
 	export default {
 		components: {AppHeader},
 		name: "app-planner",

@@ -8,17 +8,17 @@ export default new Router({
 		{
 			path: '/',
 			name: 'app',
-			component: require('@/components/AppTodo').default
+			component: require('@/pages/AppTodo').default
 		},
 		{
 			path: '/planner',
 			name: 'app-planner',
-			component: require('@/components/AppPlanner').default
+			component: require('@/pages/AppPlanner').default
 		},
 		{
 			path: '/notification',
 			name: 'app-notification',
-			component: require('@/components/AppNotification').default
+			component: require('@/pages/AppNotification').default
 		},
 		{
 			path: '*',
