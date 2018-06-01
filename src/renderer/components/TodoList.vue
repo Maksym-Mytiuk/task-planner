@@ -1,11 +1,15 @@
 <template>
     <div class="todo-list">
         <transition-group name="todo-fade" tag="div">
-            <div v-for="(item, index) in todo" :key="index">
+            <div v-for="(item, index) in todo" :key="item.id">
 
                 <v-layout row class="todo-list__items">
                     <v-flex xs1>
-                        <v-checkbox color="blue" v-model="item.isCompleted"></v-checkbox>
+                        <v-checkbox
+                                color="blue"
+                                v-model="item.isCompleted"
+                                @click="isCheckedTodoItem(index, item.isCompleted)">
+                        </v-checkbox>
                     </v-flex>
 
                     <v-flex xs9>
@@ -38,28 +42,27 @@
 		methods: {
 			removeTodoItem(index) {
 				this.$store.commit('removeTodoItem', index)
+			},
+			isCheckedTodoItem(index, isChecked) {
+				const payload = {index, isChecked};
+				this.$store.commit('isCompleteItem', payload);
 			}
 		},
 		computed: {
 			todo() {
 				return this.$store.state.todo.todoItems;
-			}
+			},
 		}
 	}
 
 </script>
 
 <style lang="stylus" scoped>
-    .todo-fade-enter-active
+    .todo-fade-enter-active, .todo-fade-leave-active
         transition all .3s ease
 
-    .todo-fade-leave-active
-        transition all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0)
-
     .todo-fade-enter, .todo-fade-leave-to
-        transform translateX(10px)
-        opacity 0
-
+        transform translateX(3333px)
 
     .todo-list
         .todo-editing

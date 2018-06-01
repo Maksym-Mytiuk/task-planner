@@ -2,13 +2,13 @@ export default {
 	state: {
 		todoItems: [
 			{
-				id: 1,
+				id: Symbol('id'),
 				isCompleted: true,
 				isEditing: false,
 				massage: 'Todo test text lorem ipsum',
 			},
 			{
-				id: 2,
+				id: Symbol('id'),
 				isCompleted: false,
 				isEditing: false,
 				massage: 'Todo test text lorem ipsum!!!',
@@ -21,6 +21,9 @@ export default {
 		},
 		removeTodoItem(state, index){
 			state.todoItems.splice(index, 1)
+		},
+		isCompleteItem(state, payload){
+			state.todoItems[payload.index].isCompleted = !payload.isChecked
 		}
 	}
 };
