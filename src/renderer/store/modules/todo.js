@@ -19,11 +19,25 @@ export default {
 		addTodoItem(state, todoItem) {
 			state.todoItems.push(todoItem)
 		},
-		removeTodoItem(state, index){
+		removeTodoItem(state, index) {
 			state.todoItems.splice(index, 1)
 		},
-		isCompleteItem(state, payload){
-			state.todoItems[payload.index].isCompleted = !payload.isChecked
+		isCompleteItem(state, itemData) {
+			state.todoItems[itemData.index].isCompleted = !itemData.isChecked
+		}
+	},
+	getters: {
+		getFilteredTodo(state) {
+			return state.todoItems.filter((item) => {
+                switch ('all') {
+					case 'completed':
+						return item.isCompleted === true;
+					case 'uncompleted':
+						return item.isCompleted === false;
+					default:
+						return item;
+				}
+			})
 		}
 	}
 };

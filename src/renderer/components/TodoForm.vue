@@ -20,7 +20,7 @@
 
         <v-snackbar :timeout="1800" :color="'error'" v-model="snackbar">
             {{error}}
-            <v-btn dark flat @click="snackbar">Close</v-btn>
+            <v-btn dark flat @click="snackbar = false">Close</v-btn>
         </v-snackbar>
     </div>
 </template>

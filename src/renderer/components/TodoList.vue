@@ -50,7 +50,7 @@
 		},
 		computed: {
 			todo() {
-				return this.$store.state.todo.todoItems;
+				return this.$store.getters.getFilteredTodo;
 			},
 		}
 	}
