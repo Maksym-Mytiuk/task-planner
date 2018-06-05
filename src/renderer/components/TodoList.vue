@@ -1,8 +1,8 @@
 <template>
     <div class="todo-list">
         <transition-group name="todo-fade" tag="div">
-            <div v-for="(item, index) in todo" :key="item.id">
 
+            <div v-for="(item, index) in todo" :key="item.id">
                 <v-layout row class="todo-list__items">
                     <v-flex xs1>
                         <v-checkbox
@@ -27,11 +27,11 @@
                         <v-btn small flat color="blue" class="todo-editing__btn" @click="removeTodoItem(index)">
                             <v-icon>delete_outline</v-icon>
                         </v-btn>
-
                     </v-flex>
                 </v-layout>
 
             </div>
+
         </transition-group>
     </div>
 </template>
@@ -39,6 +39,12 @@
 <script>
 	export default {
 		name: "TodoList",
+		props: {
+			filterBy: {
+				type: String,
+				default: 'all'
+			}
+		},
 		methods: {
 			removeTodoItem(index) {
 				this.$store.commit('removeTodoItem', index)
@@ -46,11 +52,11 @@
 			isCheckedTodoItem(index, isChecked) {
 				const payload = {index, isChecked};
 				this.$store.commit('isCompleteItem', payload);
-			}
+			},
 		},
 		computed: {
 			todo() {
-				return this.$store.getters.getFilteredTodo;
+				return this.$store.getters.getFilteredTodo(this.filterBy)
 			},
 		}
 	}

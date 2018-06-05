@@ -5,7 +5,7 @@
                    block
                    large
                    color="blue"
-                   @click="sortTodo('all')">
+                   @click="emitFilter('all')">
 
                 <v-icon>list</v-icon>
             </v-btn>
@@ -14,7 +14,7 @@
                    block
                    large
                    color="blue"
-                   @click="sortTodo('completed')">
+                   @click="emitFilter('completed')">
 
                 <v-icon>check_box</v-icon>
             </v-btn>
@@ -23,7 +23,7 @@
                    block
                    large
                    color="blue"
-                   @click="sortTodo('uncompleted')">
+                   @click="emitFilter('uncompleted')">
 
                 <v-icon>check_box_outline_blank</v-icon>
             </v-btn>
@@ -35,11 +35,11 @@
 <script>
 	export default {
 		name: "TodoFilter",
-        methods: {
-	        sortTodo(value){
-		        this.$store.getters.getFilteredTodo(value)
-            }
-        }
+		methods: {
+			emitFilter(value) {
+				this.$emit('filter', value)
+			}
+		}
 	}
 </script>
 

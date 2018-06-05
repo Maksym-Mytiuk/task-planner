@@ -3,13 +3,10 @@
         <app-header :header="this.header"></app-header>
 
         <v-container class="todo">
-
-            <todo-filter></todo-filter>
+            <todo-filter @filter="filterTodo"></todo-filter>
             <todo-form></todo-form>
-            <todo-list></todo-list>
-
+            <todo-list :filterBy="filterBy"></todo-list>
         </v-container>
-
 
     </div>
 </template>
@@ -22,13 +19,18 @@
 
 	export default {
 		components: {AppHeader, TodoFilter, TodoForm, TodoList},
-
 		name: "app-todo",
 		data() {
 			return {
 				header: "Todo",
+				filterBy: 'all'
 			}
 		},
+		methods: {
+			filterTodo(data) {
+				this.filterBy = data
+			}
+		}
 	}
 </script>
 

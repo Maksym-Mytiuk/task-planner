@@ -27,9 +27,9 @@ export default {
 		}
 	},
 	getters: {
-		getFilteredTodo(state) {
+		getFilteredTodo: (state) => (value) => {
 			return state.todoItems.filter((item) => {
-                switch ('all') {
+				switch (value) {
 					case 'completed':
 						return item.isCompleted === true;
 					case 'uncompleted':
