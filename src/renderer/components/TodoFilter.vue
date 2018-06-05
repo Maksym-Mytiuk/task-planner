@@ -5,7 +5,8 @@
                    block
                    large
                    color="blue"
-                   @click="emitFilter('all')">
+                   :class="{ active: filterBy === 'all' }"
+                   @click="filterTodo('all')">
 
                 <v-icon>list</v-icon>
             </v-btn>
@@ -14,7 +15,8 @@
                    block
                    large
                    color="blue"
-                   @click="emitFilter('completed')">
+                   :class="{ active: filterBy === 'completed' }"
+                   @click="filterTodo('completed')">
 
                 <v-icon>check_box</v-icon>
             </v-btn>
@@ -23,7 +25,8 @@
                    block
                    large
                    color="blue"
-                   @click="emitFilter('uncompleted')">
+                   :class="{ active: filterBy === 'uncompleted' }"
+                   @click="filterTodo('uncompleted')">
 
                 <v-icon>check_box_outline_blank</v-icon>
             </v-btn>
@@ -35,8 +38,14 @@
 <script>
 	export default {
 		name: "TodoFilter",
+        data(){
+			return{
+				filterBy: 'all'
+            }
+        },
 		methods: {
-			emitFilter(value) {
+			filterTodo(value) {
+				this.filterBy = value;
 				this.$emit('filter', value)
 			}
 		}
@@ -46,5 +55,9 @@
 <style lang="stylus" scoped>
     .btn__content
         i
-            font-size 2.5rem
+            font-size 2.25rem
+    .btn.active
+        transition none
+        border-bottom 3px solid
+
 </style>

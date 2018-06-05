@@ -28,14 +28,14 @@ export default {
 	},
 	getters: {
 		getFilteredTodo: (state) => (value) => {
-			return state.todoItems.filter((item) => {
+			return state.todoItems.filter((todo) => {
 				switch (value) {
 					case 'completed':
-						return item.isCompleted === true;
+						return todo.isCompleted === true;
 					case 'uncompleted':
-						return item.isCompleted === false;
+						return todo.isCompleted === false;
 					default:
-						return item;
+						return todo;
 				}
 			})
 		}

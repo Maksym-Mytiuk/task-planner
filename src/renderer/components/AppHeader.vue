@@ -10,14 +10,14 @@
 <script>
     import AppNav from './AppNav';
 	export default {
+		name: "app-header",
 		props: {
 			header: {
 				type: String,
-				default: 'Todo Header'
+				default: 'Task-Planner'
 			}
 		},
 		components: {AppNav},
-		name: "app-header",
 	}
 </script>
 
